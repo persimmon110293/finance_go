@@ -8,7 +8,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./app:/go/src
+      - ./app:/go/src/app
     tty: true
     # command: fresh
   web:
@@ -20,8 +20,6 @@ services:
       - 80:80
     depends_on:
       - app
-    volumes:
-      - ./src/:/app
 #   db:
 #     container_name: mysql
 #     build:

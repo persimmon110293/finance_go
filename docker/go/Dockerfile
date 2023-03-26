@@ -1,7 +1,6 @@
 FROM golang:latest
 
-WORKDIR /app
-COPY ./app go/src/app
+COPY ./app ./src/app
 
 ENV CGO_ENABLED=0 \
     GOOS=linux \
