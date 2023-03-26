@@ -1,2 +1,2 @@
-app/tmp/
-app/.air.toml
+./app/tmp/
+./app/.air.toml
