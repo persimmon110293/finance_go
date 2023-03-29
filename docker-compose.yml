@@ -8,7 +8,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./app:/go/src
+      - ./app:/go/src/app
     tty: true
     # command: fresh
   web:
@@ -20,23 +20,21 @@ services:
       - 80:80
     depends_on:
       - app
+  mysql:
+    container_name: mysql
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      TZ: 'Asia/Tokyo'
     volumes:
-      - ./src/:/app
-#   db:
-#     container_name: mysql
-#     build:
-#       context: .
-#       dockerfile: ./docker/db/Dockerfile
-#     ports:
-#       - 3306:3306
-#     environment:
-#       MYSQL_DATABASE: database
-#       MYSQL_USER: user
-#       MYSQL_PASSWORD: password
-#       MYSQL_ROOT_PASSWORD: password
-#       TZ: 'Asia/Tokyo'
-#     volumes:
-#       - mysql-volume:/var/lib/mysql
+      - mysql-volume:/var/lib/mysql
 
-# volumes:
-#   mysql-volume:
+volumes:
+  mysql-volume:
