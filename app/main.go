@@ -1,6 +1,7 @@
 package main
 
 import (
+	"app/Controllers"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -11,6 +12,7 @@ var e = createMux()
 
 func main() {
 	e.GET("/", articleIndex)
+	e.GET("/finance", getFinanceInfo)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
@@ -27,4 +29,8 @@ func createMux() *echo.Echo {
 
 func articleIndex(c echo.Context) error {
 	return c.String(http.StatusOK, "Hello, World from Docker")
+}
+
+func getFinanceInfo(c echo.Context) error {
+	return c.String(http.StatusOK, Controllers.GetFinanceInfo())
 }
